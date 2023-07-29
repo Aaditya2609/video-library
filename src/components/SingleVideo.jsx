@@ -6,6 +6,7 @@ import { MdPlaylistAdd } from "react-icons/md";
 import { TfiWrite } from "react-icons/tfi";
 import NotesModal from './NotesModal';
 import { EditNoteModal } from './EditNoteModal';
+import PlaylistModal from './PlaylistModal';
 
 function SingleVideo() {
     const { currVideo } = useParams();
@@ -14,6 +15,7 @@ function SingleVideo() {
     const temp = category.find((items) => items.category === Video.category);
     const [watchLaterItems, setWatchLaterItems] = useState(new Set(watchLater.map(item => item._id)));
     const [showNotesModal, setShowNotesModal] = useState(false);
+    const [showPlaylistModal, setShowPlaylistModal] = useState(false);
     const [videonotes, setVideonotes] = useState([]);
     const [selectedNote, setSelectedNote] = useState(null);
     const [editedNoteText, setEditedNoteText] = useState("");
@@ -24,7 +26,7 @@ function SingleVideo() {
             (item) => item._id === parseInt(currVideo)
         );
         setVideonotes(parseddata);
-    }, [videonotes]);
+    }, [notes]);
 
 
     useEffect(() => {
@@ -96,7 +98,7 @@ function SingleVideo() {
                                 className={`m-1 text-2xl ${watchLaterItems.has(Video._id) ? 'text-[#29b9f0ff]' : ''}`}
                             />
                         </button>
-                        <button>
+                        <button onClick={() => setShowPlaylistModal(true)}>
                             <MdPlaylistAdd className={`m-1 text-2xl`}
                             />
                         </button>
@@ -136,7 +138,9 @@ function SingleVideo() {
                     onSave={() => handleSaveEditedNote()}
                     onClose={() => setSelectedNote(null)}
                 />
+                
             )}
+            {showPlaylistModal && <PlaylistModal setShowPlaylistModal={setShowPlaylistModal} Video={Video} />}
         </div>
     )
 }

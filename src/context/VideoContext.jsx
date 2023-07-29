@@ -239,8 +239,10 @@ const VideoProvider=({children})=>{
     const [allVideos,setAllVideos]=useState(videos);
     const localtemp=localStorage.getItem("watchlater");
     const localnotes=localStorage.getItem("notes");
+    const localplaylists=localStorage.getItem("playlists");
     const [watchLater,setWatchLater]=useState(JSON.parse(localtemp)??[]);
     const [notes,setNotes]=useState(JSON.parse(localnotes)??[]);
+    const [playlists,setplaylists]=useState(JSON.parse(localplaylists)??[]);
     
     useEffect(() => {
       localStorage.setItem("watchlater", JSON.stringify(watchLater));
@@ -250,9 +252,12 @@ const VideoProvider=({children})=>{
       localStorage.setItem("notes", JSON.stringify(notes));
     }, [notes]);
 
+    useEffect(() => {
+      localStorage.setItem("playlists", JSON.stringify(playlists));
+    }, [playlists]);
 
     return(
-        <VideoContext.Provider value={{category,allVideos,watchLater,setWatchLater,notes,setNotes}}>
+        <VideoContext.Provider value={{category,allVideos,watchLater,setWatchLater,notes,setNotes,playlists,setplaylists}}>
             {children}
         </VideoContext.Provider>
     )

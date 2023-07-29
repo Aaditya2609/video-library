@@ -6,7 +6,7 @@ function NotesModal({ setShowNotesModal, videoid }) {
   const [note, setNote] = useState('');
 
   const handleAddNote = () => {
-    const temp = { _id: videoid, text: note }; // Store the note content as a string
+    const temp = { _id: videoid, text: note };
     const temp2 = [...notes, temp];
     setNotes(temp2);
     setShowNotesModal(false);
