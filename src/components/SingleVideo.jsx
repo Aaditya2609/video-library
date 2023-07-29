@@ -26,7 +26,7 @@ function SingleVideo() {
             (item) => item._id === parseInt(currVideo)
         );
         setVideonotes(parseddata);
-    }, [notes]);
+    }, [currVideo]);
 
 
     useEffect(() => {

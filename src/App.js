@@ -6,6 +6,7 @@ import WatchLaterPage from './pages/WatchLaterPage';
 import CategoryPage from './pages/CategoryPage';
 import VideoPage from './pages/VideoPage';
 import PlaylistsPage from './pages/PlaylistsPage';
+import PlaylistPage from './pages/PlaylistPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/category/:currCategory" element={<CategoryPage/>} /> 
         <Route path="/video/:currVideo" element={<VideoPage/>} /> 
         <Route path="/playlists" element={<PlaylistsPage/>} /> 
+        <Route path="/playlists/:currPlaylist" element={<PlaylistPage/>} /> 
       </Routes>
     </div>
   );
